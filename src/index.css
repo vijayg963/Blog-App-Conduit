@@ -1,5 +1,7 @@
 body {
-  margin: 0;
+  font-size: 16px;
+  text-align: center;
+  margin: 0 auto;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -16,8 +18,28 @@ code {
   text-align: center;
 }
 
+a {
+  text-decoration: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.error {
+  font-size: 1.2rem;
+  color: red;
+  font-weight: 600;
+}
+
+:root {
+  --primery: rgb(76, 190, 76);
+  --secondary: #b8b1b1;
+  --text-light: gray;
+}
+
 header {
-  border-bottom: 1px solid rgb(248, 186, 179);
+  border-bottom: 1px solid rgb(253, 210, 205);
   padding: 0 100px;
   background-color: rgb(240, 238, 236);
 }
@@ -34,11 +56,13 @@ li {
 }
 
 .logo {
-  padding: 20px;
+  padding: 1rem;
   display: flex;
-  margin: 20px;
+  margin: 0px;
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 600;
+  color: var(--primery);
+  cursor: pointer;
 }
 
 .navbar {
@@ -46,7 +70,214 @@ li {
 }
 
 .navbar li {
-  margin: 20px;
-  font-size: 1.6rem;
+  margin: 0 20px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--secondary);
+}
+
+.formcontrol {
+  margin: 2rem auto;
+  text-align: center;
+  display: inline-block;
+  box-shadow: 0px 0px 10px gray;
+  border-radius: 10px;
+}
+
+h1 {
+  color: rgb(1, 1, 59);
+  font-size: 3rem;
   font-weight: 600;
+}
+
+h4 {
+  font-size: 1.2rem;
+  color: var(--primery);
+  display: inline;
+}
+form {
+  max-width: 520px;
+  margin: 3rem 4rem;
+  padding: 1.5rem;
+}
+input {
+  font-size: 1.2rem;
+  padding: 8px 14px;
+  width: 480px;
+  margin: 5px;
+  border-radius: 5px;
+  border: none;
+  border: 1px solid gray;
+}
+
+input[type='submit'] {
+  padding: 1rem 2rem;
+  font-weight: 700;
+  margin: 20px 5px;
+  width: fit-content;
+  border: none;
+  background-color: var(--primery);
+  color: white;
+}
+
+.button {
+  text-align: end;
+}
+
+.hero {
+  padding: 30px;
+  background-color: var(--primery);
+  color: white;
+}
+
+.title-line {
+  font-size: 2rem;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.main {
+  box-sizing: border-box;
+  padding: 2.5% 5%;
+}
+
+.posts {
+  width: 65%;
+  text-align: left;
+  padding: 2.5%;
+}
+
+.tags {
+  padding: 1.5%;
+  width: 25%;
+  background-color: #f3f3f3;
+  text-align: left;
+}
+
+/* .feed-header {
+  border-bottom: 1px solid gray;
+} */
+
+.feed-title {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--primery);
+  padding: 0 1.5rem;
+  margin: 0 1rem;
+}
+
+.tags-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.tag {
+  font-weight: 500;
+  font-size: 1.2rem;
+  border-radius: 20px;
+  padding: 4px 10px;
+  background-color: gray;
+  color: white;
+  display: inline-block;
+  margin: 5px 1px;
+  cursor: pointer;
+}
+
+.post {
+  padding: 2rem 0;
+}
+
+.smile {
+  padding: 0 5px;
+  font-size: 2rem;
+  display: inline-table;
+}
+
+.date {
+  margin: 0;
+  color: var(--secondary);
+}
+
+.Jc-center {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.tag-name {
+  border: 1px solid gray;
+  border-radius: 20px;
+  padding: 2px 0.7rem;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.likes-counter {
+  font-size: 1.2rem;
+  padding: 4px 8px;
+  border-radius: 5px;
+  color: var(--primery);
+  border: 1px solid var(--primery);
+  cursor: pointer;
+}
+
+.button-section {
+  color: var(--secondary);
+}
+
+.title {
+  margin: 8px;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.description {
+  margin: 0 8px;
+  margin-bottom: 2rem;
+}
+
+.read-more {
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+h2 strong {
+  font-size: 4rem;
+  font-weight: 800;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pagination .active {
+  box-sizing: border-box;
+  border: 1px solid var(--primery);
+  background-color: white;
+  color: var(--primery);
+}
+
+.span-box {
+  background-color: var(--primery);
+  color: white;
+  padding: 9px 12px;
+  margin: 5px 1px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.span-box:hover {
+  opacity: 0.8;
+}
+
+input:disabled {
+  background-color: gray;
 }
