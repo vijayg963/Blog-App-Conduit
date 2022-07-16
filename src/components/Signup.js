@@ -1,5 +1,7 @@
 import React from 'react';
+import { signupURL } from '../utils/constant';
 import validate from '../utils/validate';
+import { withRouter } from 'react-router-dom';
 
 class Signup extends React.Component {
   state = {
@@ -22,6 +24,28 @@ class Signup extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    const { username, email, password } = this.state;
+    fetch(signupURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user: { username, email, password } }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          return res.json().then(({ errors }) => {
+            return Promise.reject(errors);
+          });
+        }
+        return res.json();
+      })
+      .then(({ user }) => {
+        this.props.updateUser(user);
+        this.setState({ username: '', password: '', email: '' });
+        this.props.history.push('/');
+      })
+      .catch((errors) => this.setState({ errors }));
   };
 
   render() {
@@ -51,6 +75,7 @@ class Signup extends React.Component {
             <input
               type='password'
               name='password'
+              autoComplete='on'
               onChange={this.handleChange}
               value={password}
               placeholder='PassWord'
@@ -60,7 +85,7 @@ class Signup extends React.Component {
               <input
                 type='submit'
                 disabled={errors.email || errors.password || errors.username}
-                value='Sign In'
+                value='Sign Up'
               />
             </div>
           </form>
@@ -70,4 +95,4 @@ class Signup extends React.Component {
   }
 }
 
-export default Signup;
+export default withRouter(Signup);
