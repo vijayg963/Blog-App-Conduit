@@ -19,13 +19,13 @@ function Header(props) {
 function NonAuthHeader() {
   return (
     <ul className='navbar'>
-      <NavLink activeClassName='active' to='/' exact className='active'>
+      <NavLink activeClassName='active' to='/' exact>
         <li>Home</li>
       </NavLink>
-      <NavLink activeClassName='active' to='/signup' className='active'>
+      <NavLink activeClassName='active' to='/signup'>
         <li>Sign Up</li>
       </NavLink>
-      <NavLink activeClassName='active' to='/login' className='active'>
+      <NavLink activeClassName='active' to='/login'>
         <li>Sign In</li>
       </NavLink>
     </ul>
@@ -35,16 +35,16 @@ function NonAuthHeader() {
 function AuthHeader() {
   return (
     <ul className='navbar'>
-      <NavLink activeClassName='active' to='/' exact className='active'>
+      <NavLink activeClassName='active' to='/' exact>
         <li>Home</li>
       </NavLink>
-      <NavLink activeClassName='active' to='/new-post' className='active'>
+      <NavLink activeClassName='active' to='/new-post'>
         <li>New Article</li>
       </NavLink>
-      <NavLink activeClassName='active' to='/settings' className='active'>
+      <NavLink activeClassName='active' to='/settings'>
         <li>Settings</li>
       </NavLink>
-      <NavLink activeClassName='active' to='/profile' className='active'>
+      <NavLink activeClassName='active' to='/profile'>
         <li>Profile</li>
       </NavLink>
     </ul>

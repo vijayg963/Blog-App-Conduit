@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { articleURL } from '../utils/constant';
 import Loader from './Loader';
 import '../style/article.scss';
@@ -56,9 +56,22 @@ class SinglePost extends React.Component {
           <p>Heading:- {article.description}</p>
           <p> {article.body}</p>
         </div>
+        <div>
+          {this.props.user === null ? (
+            <footer>
+              <p>
+                <Link to='/login'>Sign in</Link> or
+                <Link to='/signup'>Sign up</Link>
+                to add comments on this article.{' '}
+              </p>
+            </footer>
+          ) : (
+            ''
+          )}
+        </div>
       </article>
     );
   }
 }
 
-export default SinglePost;
+export default withRouter(SinglePost);

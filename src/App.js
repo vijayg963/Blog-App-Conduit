@@ -56,56 +56,60 @@ class App extends React.Component {
     return (
       <>
         <Header isLoggedIn={isLoggedIn} user={user} />
-        {this.state.isLoggedIn ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+        {this.state.isLoggedIn ? (
+          <Authorization user={user} />
+        ) : (
+          <Unauthorization user={user} updateUser={this.updateUser} />
+        )}
       </>
     );
   }
 }
 
-function AuthenticatedApp() {
+function Authorization(props) {
   return (
-    <div>
-      <Switch>
-        <Route path='/' exact>
-          <Home />
-        </Route>
-        <Route path='/article/:slug' component={SinglePost} />
-        <Route path='/new-post' exact>
-          <NewPost />
-        </Route>
-        <Route path='/settings' exact>
-          <Setting />
-        </Route>
-        <Route path='/profile' exact>
-          <Profile />
-        </Route>
-        <Route path='*'>
-          <NoMatch />
-        </Route>
-      </Switch>
-    </div>
+    <Switch>
+      <Route path='/' exact>
+        <Home />
+      </Route>
+      <Route path='/article/:slug'>
+        <SinglePost user={props.user} />
+      </Route>
+      <Route path='/new-post' exact>
+        <NewPost user={props.user} />
+      </Route>
+      <Route path='/settings' exact>
+        <Setting />
+      </Route>
+      <Route path='/profile' exact>
+        <Profile />
+      </Route>
+      <Route path='*'>
+        <NoMatch />
+      </Route>
+    </Switch>
   );
 }
 
-function UnauthenticatedApp() {
+function Unauthorization(props) {
   return (
-    <div>
-      <Switch>
-        <Route path='/' exact>
-          <Home />
-        </Route>
-        <Route path='/login'>
-          <Login updateUser={this.updateUser} />
-        </Route>
-        <Route path='/signup'>
-          <Signup updateUser={this.updateUser} />
-        </Route>
-        <Route path='/article/:slug' component={SinglePost} />
-        <Route path='*'>
-          <NoMatch />
-        </Route>
-      </Switch>
-    </div>
+    <Switch>
+      <Route path='/' exact>
+        <Home />
+      </Route>
+      <Route path='/login'>
+        <Login updateUser={props.updateUser} />
+      </Route>
+      <Route path='/signup'>
+        <Signup updateUser={props.updateUser} />
+      </Route>
+      <Route path='/article/:slug'>
+        <SinglePost user={props.user} />
+      </Route>
+      <Route path='*'>
+        <NoMatch />
+      </Route>
+    </Switch>
   );
 }
 

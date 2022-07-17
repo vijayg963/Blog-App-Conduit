@@ -5,8 +5,8 @@ import { withRouter } from 'react-router-dom';
 
 class Login extends React.Component {
   state = {
-    email: 'userFirst@gmail.com',
-    password: 'Vijayg963',
+    email: '',
+    password: '',
     errors: {
       email: '',
       password: '',
@@ -74,7 +74,6 @@ class Login extends React.Component {
             <input
               type='password'
               name='password'
-              autoComplete='on'
               onChange={this.handleChange}
               value={password}
               placeholder='enter your passWord'

@@ -75,7 +75,6 @@ class Signup extends React.Component {
             <input
               type='password'
               name='password'
-              autoComplete='on'
               onChange={this.handleChange}
               value={password}
               placeholder='PassWord'

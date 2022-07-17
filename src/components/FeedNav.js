@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import '../style/feednav.scss';
 
 function FeedNav(props) {
@@ -9,12 +8,10 @@ function FeedNav(props) {
         onClick={props.removeTab}
         className={props.activeTag === '' ? 'feed-title active' : 'feed-title'}
       >
-        <Link>Global Feed</Link>
+        Global Feed
       </span>
       {props.activeTag && (
-        <span className='feed-title active'>
-          <Link># {props.activeTag}</Link>
-        </span>
+        <span className='feed-title active'># {props.activeTag}</span>
       )}
     </nav>
   );
