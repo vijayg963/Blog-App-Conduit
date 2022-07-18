@@ -16,7 +16,14 @@ function Post(props) {
       <div className='post'>
         <div className='flex '>
           <div className='Jc-center'>
-            <span className='smile'>🙂</span>
+            <span className='smile-small'>
+              {author.image ? (
+                <img src={author.image} alt={author.username} />
+              ) : (
+                '🙂'
+              )}
+            </span>
+
             <span>
               <Link to='/'>
                 <h4>{author.username}</h4>

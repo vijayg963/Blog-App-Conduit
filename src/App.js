@@ -56,7 +56,7 @@ class App extends React.Component {
     return (
       <>
         <Header isLoggedIn={isLoggedIn} user={user} />
-        {this.state.isLoggedIn ? (
+        {isLoggedIn ? (
           <Authorization user={user} />
         ) : (
           <Unauthorization user={user} updateUser={this.updateUser} />
@@ -82,7 +82,7 @@ function Authorization(props) {
         <Setting />
       </Route>
       <Route path='/profile' exact>
-        <Profile />
+        <Profile user={props.user} />
       </Route>
       <Route path='*'>
         <NoMatch />

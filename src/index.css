@@ -27,7 +27,7 @@ a {
 }
 
 .error {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: red;
   font-weight: 600;
 }
@@ -71,7 +71,7 @@ li {
 
 .navbar li {
   margin: 0 20px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 500;
   color: var(--secondary);
 }
@@ -86,12 +86,12 @@ li {
 
 h1 {
   color: rgb(1, 1, 59);
-  font-size: 3rem;
+  font-size: 2.8rem;
   font-weight: 600;
 }
 
 h4 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: var(--primery);
   display: inline;
 }
@@ -113,7 +113,7 @@ input {
 }
 
 .new-post {
-  width: 56rem;
+  width: 54rem;
 }
 .new-post textarea,
 .new-post input {
@@ -123,11 +123,11 @@ input {
 .new-post input[type='submit'] {
   float: right;
   margin-right: inherit;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 input[type='submit'] {
-  padding: 1rem 2rem;
+  padding: 0.8rem 1.8rem;
   font-weight: 700;
   margin: 20px 5px;
   width: fit-content;
@@ -147,7 +147,7 @@ input[type='submit'] {
 }
 
 .title-line {
-  font-size: 2rem;
+  font-size: 1.7rem;
 }
 
 .flex {
@@ -176,7 +176,7 @@ input[type='submit'] {
 
 .feed-title {
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: var(--primery);
   padding: 0 1.5rem;
   margin: 0 1rem;
@@ -191,27 +191,28 @@ input[type='submit'] {
 
 .tag {
   font-weight: 500;
-  font-size: 1.2rem;
+  font-size: 1rem;
   border-radius: 20px;
   padding: 4px 10px;
   background-color: gray;
   color: white;
   display: inline-block;
-  margin: 5px 1px;
+  margin: 5px 3px;
   cursor: pointer;
 }
 
 .post {
-  padding: 2rem 0;
+  padding: 1.5rem 0;
 }
 
 .smile {
   padding: 0 5px;
-  font-size: 2rem;
+  font-size: 1.8rem;
   display: inline-table;
 }
 
 .date {
+  font-size: 0.8rem;
   margin: 0;
   color: var(--secondary);
 }
@@ -230,7 +231,7 @@ input[type='submit'] {
 }
 
 .likes-counter {
-  font-size: 1.2rem;
+  font-size: 1rem;
   padding: 4px 8px;
   border-radius: 5px;
   color: var(--primery);
@@ -245,7 +246,7 @@ input[type='submit'] {
 .title {
   margin: 8px;
   font-weight: 600;
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: black;
 }
 
@@ -264,7 +265,6 @@ input[type='submit'] {
 
 h2 strong {
   font-size: 4rem;
-  font-weight: 800;
 }
 
 .pagination {
@@ -282,9 +282,9 @@ h2 strong {
 .span-box {
   background-color: var(--primery);
   color: white;
-  padding: 9px 12px;
+  padding: 0.5rem 0.7rem;
   margin: 5px 1px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 600;
   border-radius: 3px;
   cursor: pointer;
@@ -310,4 +310,68 @@ footer a {
   color: var(--primery);
   margin: 2rem 0.6rem;
   font-weight: 600;
+}
+
+.hero-user {
+  background-color: rgb(232, 246, 252);
+}
+
+.hero-user .smile {
+  margin-top: 2rem;
+  font-size: 4rem;
+}
+
+.smile img {
+  border-radius: 50%;
+  box-sizing: border-box;
+  width: 7rem;
+  height: 7rem;
+  object-fit: cover;
+  object-position: center;
+}
+
+.smile-small img {
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  box-sizing: border-box;
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-user input[type='submit'] {
+  font-size: 1rem;
+  padding: 5px 10px;
+  color: rgb(17, 16, 16);
+  background-color: transparent;
+  border: 2px solid gray;
+  cursor: pointer;
+}
+
+.hero-user .edit-profile {
+  display: flex;
+  margin-right: 3rem;
+  justify-content: flex-end;
+}
+
+.profile-feed {
+  display: flex;
+}
+
+.profile-feed span {
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin: 1rem;
+  padding: 6px 1rem;
+  background-color: lightgrey;
+}
+
+.profile-article {
+  text-align: left;
+}
+
+.active {
+  border-bottom: 3px solid var(--primery);
 }

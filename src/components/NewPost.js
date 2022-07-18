@@ -22,7 +22,7 @@ class NewPost extends React.Component {
     this.setState({ [name]: value, errors });
   };
 
-  handleSubmit = (event) => {
+  handleNewArticle = (event) => {
     event.preventDefault();
     const { title, description, tagList, body } = this.state;
     fetch(articleURL, {
@@ -48,19 +48,19 @@ class NewPost extends React.Component {
       })
       .then(({ article }) => {
         console.log(article + 'hello');
-        this.setState({
-          title: '',
-          description: '',
-          body: '',
-          tagList: '',
-        });
+        // this.setState({
+        //   title: '',
+        //   description: '',
+        //   body: '',
+        //   tagList: '',
+        // });
         this.props.history.push('/');
       })
       .catch((errors) => this.setState({ errors }));
   };
 
   render() {
-    const { errors, title, description, tagList, body } = this.state;
+    const { title, description, tagList, body } = this.state;
     return (
       <div className='formcontrol'>
         <form className='new-post'>
@@ -93,7 +93,7 @@ class NewPost extends React.Component {
             placeholder='Enter Tags'
           />
           <input
-            onChange={this.handleSubmit}
+            onClick={this.handleNewArticle}
             type='submit'
             value='Publish Article'
           />
