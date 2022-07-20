@@ -15,8 +15,8 @@ class Signup extends React.Component {
     },
   };
 
-  handleChange = (event) => {
-    let { name, value } = event.target;
+  handleChange = ({ target }) => {
+    let { name, value } = target;
     let errors = { ...this.state.errors };
     validate(errors, name, value);
     this.setState({ [name]: value, errors });

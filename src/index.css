@@ -7,6 +7,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
 }
 
 code {
@@ -19,6 +20,7 @@ code {
 }
 
 a {
+  cursor: pointer;
   text-decoration: none;
 }
 
@@ -62,7 +64,6 @@ li {
   font-size: 2rem;
   font-weight: 600;
   color: var(--primery);
-  cursor: pointer;
 }
 
 .navbar {
@@ -340,13 +341,16 @@ footer a {
   object-position: center;
 }
 
+input[type='submit'] {
+  cursor: pointer;
+}
+
 .hero-user input[type='submit'] {
   font-size: 1rem;
   padding: 5px 10px;
   color: rgb(17, 16, 16);
   background-color: transparent;
   border: 2px solid gray;
-  cursor: pointer;
 }
 
 .hero-user .edit-profile {
@@ -374,4 +378,72 @@ footer a {
 
 .active {
   border-bottom: 3px solid var(--primery);
+}
+
+.smile-xsmall img {
+  margin-right: 0.5rem;
+  border-radius: 1rem;
+  max-width: 1.8rem;
+  height: 1.7rem;
+}
+
+.hero-user .bio {
+  margin: 0 auto;
+}
+
+.comments {
+  border-radius: 10px;
+  margin: 4rem;
+  text-align: start;
+  border: 2px solid rgb(167, 207, 223);
+  width: 34rem;
+  padding: 0 2rem;
+}
+
+.singleComment {
+  text-align: start;
+}
+
+.singleComment p {
+  font-size: 1rem;
+  color: gray;
+  padding: 0;
+  margin: 0.7rem 0;
+}
+.Delete-article,
+.edit-article {
+  margin: 0 0.5rem;
+  padding: 5px 1rem;
+  color: white;
+  border: 2px solid gray;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+.add-comment {
+  background-color: var(--primery);
+  color: white;
+  border: none;
+  padding: 6px 1rem;
+  font-weight: 600;
+  border-radius: 5px;
+}
+
+.add-comment-parent {
+  display: flex;
+  flex-flow: row-reverse;
+  margin: 1rem 3rem;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.edit-article:hover {
+  background-color: rgb(48, 91, 109);
+}
+
+.Delete-article:hover {
+  background-color: crimson;
 }

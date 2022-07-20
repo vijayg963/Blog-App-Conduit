@@ -11,12 +11,24 @@ import FullPageSpiner from './components/FullPageSpiner';
 import NewPost from './components/NewPost';
 import Setting from './components/Setting';
 import Profile from './components/Profile';
+import AuthorProfile from './components/AuthorProfile';
+import UpadteArticle from './components/UpdateArticle';
 
 class App extends React.Component {
   state = {
     isLoggedIn: false,
     user: null,
     isVerifying: true,
+    authorprofiles: null,
+    updateArticle: {},
+  };
+
+  handleUserProfile = (user) => {
+    this.setState({ authorprofiles: user });
+  };
+
+  handleUpdateArticle = (article) => {
+    this.setState({ updateArticle: article });
   };
 
   componentDidMount() {
@@ -49,7 +61,7 @@ class App extends React.Component {
   };
 
   render() {
-    let { isLoggedIn, user } = this.state;
+    let { isLoggedIn, user, updateArticle } = this.state;
     if (this.state.isVerifying) {
       return <FullPageSpiner />;
     }
@@ -57,9 +69,21 @@ class App extends React.Component {
       <>
         <Header isLoggedIn={isLoggedIn} user={user} />
         {isLoggedIn ? (
-          <Authorization user={user} />
+          <Authorization
+            updateArticle={updateArticle}
+            handleUpdateArticle={this.handleUpdateArticle}
+            userprofiles={this.userprofiles}
+            handleUserProfile={this.handleUserProfile}
+            updateUser={this.updateUser}
+            user={user}
+          />
         ) : (
-          <Unauthorization user={user} updateUser={this.updateUser} />
+          <Unauthorization
+            userprofiles={this.userprofiles}
+            handleUserProfile={this.handleUserProfile}
+            user={user}
+            updateUser={this.updateUser}
+          />
         )}
       </>
     );
@@ -70,19 +94,28 @@ function Authorization(props) {
   return (
     <Switch>
       <Route path='/' exact>
-        <Home />
+        <Home handleUserProfile={props.handleUserProfile} />
       </Route>
       <Route path='/article/:slug'>
-        <SinglePost user={props.user} />
+        <SinglePost
+          handleUpdateArticle={props.handleUpdateArticle}
+          user={props.user}
+        />
       </Route>
       <Route path='/new-post' exact>
         <NewPost user={props.user} />
       </Route>
       <Route path='/settings' exact>
-        <Setting />
+        <Setting updateUser={props.updateUser} user={props.user} />
       </Route>
       <Route path='/profile' exact>
         <Profile user={props.user} />
+      </Route>
+      <Route path='/profiles/:author'>
+        <AuthorProfile user={props.user} />
+      </Route>
+      <Route path='/editArticle/:slug'>
+        <UpadteArticle updateArticle={props.updateArticle} user={props.user} />
       </Route>
       <Route path='*'>
         <NoMatch />

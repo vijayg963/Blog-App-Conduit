@@ -8,6 +8,7 @@ class SinglePost extends React.Component {
   state = {
     article: null,
     error: '',
+    comments: [],
   };
 
   componentDidMount() {
@@ -30,6 +31,28 @@ class SinglePost extends React.Component {
       });
   }
 
+  handleDeleteArticle = () => {
+    let slug = this.props.match.params.slug;
+    fetch(articleURL + `/${slug}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json ',
+        authorization: `Token ${this.props.user.token}`,
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Can not Delete article!');
+        }
+      })
+      .then(() => {
+        this.props.history.push('/');
+      })
+      .catch((err) => {
+        this.setState({ error: 'Not able to fetch article' });
+      });
+  };
+
   render() {
     const { article, error } = this.state;
     if (error) {
@@ -42,21 +65,51 @@ class SinglePost extends React.Component {
       <article>
         <section className='header'>
           <h1>{article.title}</h1>
-          <div className='Jc-center'>
-            <span className='smile'>🙂</span>
-            <span>
-              <Link to='/'>
-                <h4>{article.author.username}</h4>
-              </Link>
-              <p className='date'>{article.createdAt}</p>
-            </span>
+          <div className='flex'>
+            <div className='Jc-center'>
+              <span className='smile-small'>
+                {article.author.image ? (
+                  <img
+                    src={article.author.image}
+                    alt={article.author.username}
+                  />
+                ) : (
+                  '🙂'
+                )}
+              </span>
+              <span>
+                <Link to='/'>
+                  <h4>{article.author.username}</h4>
+                </Link>
+                <p className='date'>
+                  {article.createdAt.split('').slice(0, 10).join('')}
+                </p>
+              </span>
+            </div>
+            <div className='Jc-center'>
+              <div
+                onClick={() => {
+                  this.props.handleUpdateArticle(article);
+                  this.props.history.push(`/editArticle/${article.slug}`);
+                }}
+              >
+                {this.props.user.username === article.author.username && (
+                  <span className='edit-article'>Edit Article</span>
+                )}
+              </div>
+              <div onClick={this.handleDeleteArticle}>
+                {this.props.user.username === article.author.username && (
+                  <span className='Delete-article'>Delete Article</span>
+                )}
+              </div>
+            </div>
           </div>
         </section>
         <div>
           <p>Heading:- {article.description}</p>
           <p> {article.body}</p>
         </div>
-        <div>
+        <div className='footer'>
           {this.props.user === null ? (
             <footer>
               <p>
@@ -66,7 +119,22 @@ class SinglePost extends React.Component {
               </p>
             </footer>
           ) : (
-            ''
+            <div className='comments'>
+              <div>
+                <h3>comments</h3>
+                <textarea rows='2'></textarea>
+                <div className='add-comment-parent'>
+                  <button className='add-comment' type='submit'>
+                    Comment
+                  </button>
+                </div>
+              </div>
+              <div className='singleComment'>
+                <span>🙂</span>
+                <h4>Author</h4>
+                <p>Comment is here</p>
+              </div>
+            </div>
           )}
         </div>
       </article>

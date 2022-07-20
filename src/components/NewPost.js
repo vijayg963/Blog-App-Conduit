@@ -8,12 +8,6 @@ class NewPost extends React.Component {
     description: '',
     body: '',
     tagList: '',
-    errors: {
-      title: '',
-      description: '',
-      body: '',
-      tagList: '',
-    },
   };
 
   handleChange = (event) => {
@@ -47,13 +41,6 @@ class NewPost extends React.Component {
         return res.json();
       })
       .then(({ article }) => {
-        console.log(article + 'hello');
-        // this.setState({
-        //   title: '',
-        //   description: '',
-        //   body: '',
-        //   tagList: '',
-        // });
         this.props.history.push('/');
       })
       .catch((errors) => this.setState({ errors }));

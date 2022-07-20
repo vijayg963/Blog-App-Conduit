@@ -6,12 +6,16 @@ function FeedNav(props) {
     <nav>
       <span
         onClick={props.removeTab}
-        className={props.activeTag === '' ? 'feed-title active' : 'feed-title'}
+        className={
+          props.activeTag === ''
+            ? 'feed-title pointer active'
+            : 'feed-title pointer'
+        }
       >
         Global Feed
       </span>
       {props.activeTag && (
-        <span className='feed-title active'># {props.activeTag}</span>
+        <span className='feed-title active pointer'># {props.activeTag}</span>
       )}
     </nav>
   );

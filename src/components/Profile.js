@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { articleURL } from '../utils/constant';
 import Posts from './Posts';
-import ProfileBanner from './ProfileBanner';
 
 class Profile extends React.Component {
   state = {
@@ -47,9 +47,10 @@ class Profile extends React.Component {
             {user.image ? <img src={user.image} alt={user.username} /> : '🙂'}
           </div>
           <h2>{user.username}</h2>
-          <ProfileBanner user={user} />
           <div className='edit-profile'>
-            <input type='submit' value={`+ Follow ${user.username}`} />
+            <Link to={'/settings'}>
+              <input type='submit' value={`Edit Profile`} />
+            </Link>
           </div>
         </div>
         <div className='main'>

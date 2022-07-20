@@ -13,7 +13,13 @@ function Posts(props) {
   if (articles.length < 1) {
     return <h2>No Article Found !</h2>;
   }
-  return articles.map((article) => <Post key={article.slug} {...article} />);
+  return articles.map((article) => (
+    <Post
+      key={article.slug}
+      handleUserProfile={props.handleUserProfile}
+      {...article}
+    />
+  ));
 }
 
 export default Posts;

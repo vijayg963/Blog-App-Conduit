@@ -9,7 +9,11 @@ function Header(props) {
           <NavLink activeClassName='active' to='/'>
             <strong className='logo'>Conduit</strong>
           </NavLink>
-          {props.isLoggedIn ? <AuthHeader /> : <NonAuthHeader />}
+          {props.isLoggedIn ? (
+            <AuthHeader user={props.user} />
+          ) : (
+            <NonAuthHeader />
+          )}
         </nav>
       </header>
     </>
@@ -32,7 +36,7 @@ function NonAuthHeader() {
   );
 }
 
-function AuthHeader() {
+function AuthHeader(props) {
   return (
     <ul className='navbar'>
       <NavLink activeClassName='active' to='/' exact>
@@ -45,7 +49,16 @@ function AuthHeader() {
         <li>Settings</li>
       </NavLink>
       <NavLink activeClassName='active' to='/profile'>
-        <li>Profile</li>
+        <li>
+          <span className='Jc-center'>
+            <span className='smile-xsmall'>
+              {props.user.image && (
+                <img src={props.user.image} alt={props.user.username} />
+              )}
+            </span>
+            {props.user.username}
+          </span>
+        </li>
       </NavLink>
     </ul>
   );

@@ -80,7 +80,11 @@ class Home extends React.Component {
                 activeTag={this.state.activeTag}
               />
             </div>
-            <Posts articles={articles} error={error} />
+            <Posts
+              handleUserProfile={this.props.handleUserProfile}
+              articles={articles}
+              error={error}
+            />
             <Pagination
               articlePerPage={articlePerPage}
               articlesCount={articlesCount}

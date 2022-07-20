@@ -12,6 +12,8 @@ const userVerifyURL = ROOT_URL + 'user';
 
 const localStorageKey = 'app_user';
 
+const userProfileURL = ROOT_URL + 'profiles';
+
 export {
   ROOT_URL,
   articleURL,
@@ -20,4 +22,5 @@ export {
   signupURL,
   loginURL,
   localStorageKey,
+  userProfileURL,
 };

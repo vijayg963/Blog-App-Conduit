@@ -23,12 +23,13 @@ function Post(props) {
                 '🙂'
               )}
             </span>
-
             <span>
-              <Link to='/'>
+              <Link to={`/profiles/${author.username}`}>
                 <h4>{author.username}</h4>
               </Link>
-              <p className='date'>{createdAt}</p>
+              <p className='date'>
+                {createdAt.split('').slice(0, 10).join('')}
+              </p>
             </span>
           </div>
           <div className='likes-counter'>
