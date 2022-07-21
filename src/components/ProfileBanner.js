@@ -1,15 +1,16 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { ROOT_URL } from '../utils/constant';
+import { userProfileURL } from '../utils/constant';
 
 class ProfileBanner extends React.Component {
   state = {
     profile: '',
+    method: 'POST',
   };
 
   componentDidMount() {
     let author = this.props.match.params.author;
-    fetch(ROOT_URL + `profiles/${author}`)
+    fetch(userProfileURL + `/${author}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error(res.statusText);
@@ -26,6 +27,28 @@ class ProfileBanner extends React.Component {
         this.setState({ error: 'Not able to fetch article' });
       });
   }
+
+  followUserFunction = (method) => {
+    let username = this.props.user.username;
+    fetch(userProfileURL + `/${username}/follow`, {
+      method: method,
+      headers: {
+        'Content-Type': 'application/json ',
+        authorization: `Token ${this.props.user.token}`,
+      },
+    });
+  };
+
+  // unFollowUser = () => {
+  //   let username = this.props.user.username;
+  //   fetch(userProfileURL + `/${username}/follow`, {
+  //     method: `DELETE`,
+  //     headers: {
+  //       'Content-Type': 'application/json ',
+  //       authorization: `Token ${this.props.user.token}`,
+  //     },
+  //   });
+  // };
 
   render() {
     const { profile } = this.state;
@@ -47,7 +70,14 @@ class ProfileBanner extends React.Component {
               {profile.bio ? profile.bio : ''}
             </p>
             {profile.username !== this.props.user.username && (
-              <input type='submit' value={`+ Follow ${profile.username}`} />
+              //  <div>
+              //   { controlMethod(this.state.method)}
+              //  </div>
+              <input
+                onClick={this.followUserFunction('')}
+                type='submit'
+                value={`+ Follow ${profile.username}`}
+              />
             )}
           </div>
         </div>
@@ -55,5 +85,22 @@ class ProfileBanner extends React.Component {
     );
   }
 }
+
+// function controlMethod(props) {
+//   if (props.method === 'Post') {
+//     <input
+//       onClick={this.followUserFunction('')}
+//       type='submit'
+//       value={`+ Follow ${props.profile.username}`}
+//     />;
+//   }
+//   if (props.method === 'DELETE') {
+//     <input
+//       onClick={this.followUserFunction('')}
+//       type='submit'
+//       value={`+ Unfollow ${props.profile.username}`}
+//     />;
+//   }
+// }
 
 export default withRouter(ProfileBanner);

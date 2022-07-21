@@ -43,7 +43,6 @@ class AuthorProfile extends React.Component {
 
   render() {
     const { activeTab, articles } = this.state;
-    console.log(articles);
     return (
       <>
         <div>
