@@ -13,6 +13,7 @@ import Setting from './components/Setting';
 import Profile from './components/Profile';
 import AuthorProfile from './components/AuthorProfile';
 import UpadteArticle from './components/UpdateArticle';
+import { UserProvider } from './context/UserContext';
 
 class App extends React.Component {
   state = {
@@ -61,30 +62,24 @@ class App extends React.Component {
   };
 
   render() {
-    let { isLoggedIn, user, updateArticle } = this.state;
     if (this.state.isVerifying) {
       return <FullPageSpiner />;
     }
     return (
       <>
-        <Header isLoggedIn={isLoggedIn} user={user} />
-        {isLoggedIn ? (
-          <Authorization
-            updateArticle={updateArticle}
-            handleUpdateArticle={this.handleUpdateArticle}
-            userprofiles={this.userprofiles}
-            handleUserProfile={this.handleUserProfile}
-            updateUser={this.updateUser}
-            user={user}
-          />
-        ) : (
-          <Unauthorization
-            userprofiles={this.userprofiles}
-            handleUserProfile={this.handleUserProfile}
-            user={user}
-            updateUser={this.updateUser}
-          />
-        )}
+        <UserProvider
+          value={{
+            data: this.state,
+            handleUser: this.updateUser,
+            handleLogout: this.handleLogout,
+            // handleUpdateArticle={this.handleUpdateArticle}
+            // userprofiles={this.userprofiles}
+            // handleUserProfile={this.handleUserProfile}
+          }}
+        >
+          <Header />
+          {this.state.isLoggedIn ? <Authorization /> : <Unauthorization />}
+        </UserProvider>
       </>
     );
   }
@@ -94,28 +89,25 @@ function Authorization(props) {
   return (
     <Switch>
       <Route path='/' exact>
-        <Home handleUserProfile={props.handleUserProfile} />
+        <Home />
       </Route>
       <Route path='/article/:slug'>
-        <SinglePost
-          handleUpdateArticle={props.handleUpdateArticle}
-          user={props.user}
-        />
+        <SinglePost />
       </Route>
       <Route path='/new-post' exact>
-        <NewPost user={props.user} />
+        <NewPost />
       </Route>
       <Route path='/settings' exact>
-        <Setting updateUser={props.updateUser} user={props.user} />
+        <Setting />
       </Route>
       <Route path='/profile' exact>
-        <Profile user={props.user} />
+        <Profile />
       </Route>
       <Route path='/profiles/:author'>
-        <AuthorProfile user={props.user} />
+        <AuthorProfile />
       </Route>
       <Route path='/editArticle/:slug'>
-        <UpadteArticle updateArticle={props.updateArticle} user={props.user} />
+        <UpadteArticle />
       </Route>
       <Route path='*'>
         <NoMatch />
@@ -131,13 +123,13 @@ function Unauthorization(props) {
         <Home />
       </Route>
       <Route path='/login'>
-        <Login updateUser={props.updateUser} />
+        <Login />
       </Route>
       <Route path='/signup'>
-        <Signup updateUser={props.updateUser} />
+        <Signup />
       </Route>
       <Route path='/article/:slug'>
-        <SinglePost user={props.user} />
+        <SinglePost />
       </Route>
       <Route path='*'>
         <NoMatch />

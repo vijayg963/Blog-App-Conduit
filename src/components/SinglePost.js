@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { articleURL } from '../utils/constant';
 import Loader from './Loader';
 import '../style/article.scss';
+import UserContext from '../context/UserContext';
 
 class SinglePost extends React.Component {
   state = {
@@ -10,6 +11,8 @@ class SinglePost extends React.Component {
     error: '',
     comments: [],
   };
+
+  static contextType = UserContext;
 
   componentDidMount() {
     let slug = this.props.match.params.slug;
@@ -55,6 +58,7 @@ class SinglePost extends React.Component {
 
   render() {
     const { article, error } = this.state;
+    let { user } = this.context.data;
     if (error) {
       return <p>{error}</p>;
     }
@@ -93,12 +97,12 @@ class SinglePost extends React.Component {
                   this.props.history.push(`/editArticle/${article.slug}`);
                 }}
               >
-                {this.props.user.username === article.author.username && (
+                {user.username === article.author.username && (
                   <span className='edit-article'>Edit Article</span>
                 )}
               </div>
               <div onClick={this.handleDeleteArticle}>
-                {this.props.user.username === article.author.username && (
+                {user.username === article.author.username && (
                   <span className='Delete-article'>Delete Article</span>
                 )}
               </div>
@@ -110,7 +114,7 @@ class SinglePost extends React.Component {
           <p> {article.body}</p>
         </div>
         <div className='footer'>
-          {this.props.user === null ? (
+          {user === null ? (
             <footer>
               <p>
                 <Link to='/login'>Sign in</Link> or
